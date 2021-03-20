@@ -1,0 +1,13 @@
+
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+
+/* START Custom components */
+@import './components/buttons.css';
+@import './components/input-control.css';
+@import './components/card.css';
+@import './components/loading-bar.css';
+@import './components/side-menu.css';
+/* END Custom components */
+
+@import 'tailwindcss/utilities';
