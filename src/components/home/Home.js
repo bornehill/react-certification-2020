@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../common/Header';
 import Card from '../card/card';
-import { youtube } from "../../repository/youtube-videos-mock";
+import { youtube } from '../../repository/youtube-videos-mock';
 
 export default () => {
   return (
@@ -21,10 +21,11 @@ export default () => {
         </section>
         <section>
           <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                    {youtube && youtube.items.filter(i => i.id.videoId).map(video =>
-                        <Card key={video.etag} video={video} />
-                    )}
-          </ul>            
+            {youtube &&
+              youtube.items
+                .filter((i) => i.id.videoId)
+                .map((video) => <Card key={video.etag} video={video} />)}
+          </ul>
         </section>
       </main>
     </>

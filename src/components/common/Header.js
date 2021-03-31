@@ -17,7 +17,7 @@ const Header = () => {
 
   return (
     <header>
-      {auth.authenticated && (
+      {auth.authenticated ? (
         <div>
           <div className="flex items-center justify-between p-4">
             <div className="flex items-center">
@@ -38,8 +38,7 @@ const Header = () => {
           </div>
           <SideMenu show={openMenu} />
         </div>
-      )}
-      {!auth.authenticated && (
+      ) : (
         <div className="flex items-center justify-between p-4">
           <Link className="font-emphasis" to="/">
             <span className="text-xl text-flame-600">Wize</span>
