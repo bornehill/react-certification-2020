@@ -5,10 +5,24 @@ import Card from '../card/card';
 import WizeTubeService from '../../services/wize-tube.service';
 import { useWizeTube } from '../../providers/wize-tube.provider';
 import { GET_VIDEOS_SUCCESS } from '../../actions/wize-request';
+import { youtube as mock } from '../../repository/youtube-videos-mock';
 
 export default () => {
   const { state, dispatch } = useWizeTube();
-  const { videos: youtube } = state;
+  const { videos } = state;
+  const [youtube, setYoutube] = useState(videos);
+
+  const onSearch = (name) => {
+    if (!name.target.value) {
+      setYoutube(videos);
+      return;
+    }
+
+    const filterVideos = youtube.items.filter((v) =>
+      v.snippet.title.includes(name.target.value)
+    );
+    setYoutube({ items: [...filterVideos] });
+  };
 
   useEffect(() => {
     WizeTubeService.getVideos()
@@ -17,11 +31,12 @@ export default () => {
           payload: data,
           type: GET_VIDEOS_SUCCESS,
         });
+        setYoutube(data);
       })
       .catch((err) => {
         console.log('error: ', err);
       });
-  }, [youtube]);
+  }, [videos]);
 
   return (
     <>
@@ -35,6 +50,12 @@ export default () => {
             <Link to="/centres" className="btn btn-primary my-4 inline-block">
               Explore videos
             </Link>
+            <input
+              className="text-black"
+              id="search-video"
+              placeholder="Search"
+              onChange={onSearch}
+            />
           </div>
         </section>
         <section>
