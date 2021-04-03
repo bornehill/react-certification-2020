@@ -3,19 +3,25 @@ import { Link } from 'react-router-dom';
 import Header from '../common/Header';
 import Card from '../card/card';
 import WizeTubeService from '../../services/wize-tube.service';
+import { useWizeTube } from '../../providers/wize-tube.provider';
+import { GET_VIDEOS_SUCCESS } from '../../actions/wize-request';
 
 export default () => {
-  const [youtube, setYoutube] = useState({ items: [] });
+  const { state, dispatch } = useWizeTube();
+  const { videos: youtube } = state;
 
   useEffect(() => {
     WizeTubeService.getVideos()
       .then(({ data }) => {
-        setYoutube(data);
+        dispatch({
+          payload: data,
+          type: GET_VIDEOS_SUCCESS,
+        });
       })
       .catch((err) => {
         console.log('error: ', err);
       });
-  }, []);
+  }, [youtube]);
 
   return (
     <>
