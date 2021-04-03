@@ -1,10 +1,22 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../common/Header';
 import Card from '../card/card';
-import { youtube } from '../../repository/youtube-videos-mock';
+import WizeTubeService from '../../services/wize-tube.service';
 
 export default () => {
+  const [youtube, setYoutube] = useState({ items: [] });
+
+  useEffect(() => {
+    WizeTubeService.getVideos()
+      .then(({ data }) => {
+        setYoutube(data);
+      })
+      .catch((err) => {
+        console.log('error: ', err);
+      });
+  }, []);
+
   return (
     <>
       <Header />
