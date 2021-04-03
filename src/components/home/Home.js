@@ -5,7 +5,6 @@ import Card from '../card/card';
 import WizeTubeService from '../../services/wize-tube.service';
 import { useWizeTube } from '../../providers/wize-tube.provider';
 import { GET_VIDEOS_SUCCESS } from '../../actions/wize-request';
-import { youtube as mock } from '../../repository/youtube-videos-mock';
 
 export default () => {
   const { state, dispatch } = useWizeTube();
