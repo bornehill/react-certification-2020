@@ -8,6 +8,8 @@ const wizeTubeReducer = (state, action) => {
         videos: action.payload,
       };
     }
+    default:
+      return state;
   }
 };
 
