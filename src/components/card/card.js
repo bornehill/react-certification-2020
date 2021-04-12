@@ -14,10 +14,7 @@ const Card = ({ video, showButton = true }) => {
         allow="accelerometer; encrypted-media; gyroscope; picture-in-picture"
       />
       <div className="px-4 py-2">
-        <Link
-          to={{ pathname: `/video/${video.id.videoId}`, query: { video } }}
-          className="text-2xl"
-        >
+        <Link to={{ pathname: `/video/${video.id.videoId}` }} className="text-2xl">
           {video.snippet.title}
         </Link>
         <p className="font-bold">
