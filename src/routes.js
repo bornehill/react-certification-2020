@@ -1,12 +1,17 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 import Home from './components/home/Home';
+import CardView from './components/card/card-view';
 
 export const routes = [
   {
     path: '/',
     component: Home,
     exact: true,
+  },
+  {
+    path: '/video/:id',
+    component: CardView,
   },
 ];
 

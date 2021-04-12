@@ -1,10 +1,42 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../common/Header';
 import Card from '../card/card';
-import { youtube } from '../../repository/youtube-videos-mock';
+import WizeTubeService from '../../services/wize-tube.service';
+import { useWizeTube } from '../../providers/wize-tube.provider';
+import { GET_VIDEOS_SUCCESS } from '../../actions/wize-request';
 
 export default () => {
+  const { state, dispatch } = useWizeTube();
+  const { videos } = state;
+  const [youtube, setYoutube] = useState(videos);
+
+  const onSearch = (name) => {
+    if (!name.target.value) {
+      setYoutube(videos);
+      return;
+    }
+
+    const filterVideos = youtube.items.filter((v) =>
+      v.snippet.title.includes(name.target.value)
+    );
+    setYoutube({ items: [...filterVideos] });
+  };
+
+  useEffect(() => {
+    WizeTubeService.getVideos()
+      .then(({ data }) => {
+        dispatch({
+          payload: data,
+          type: GET_VIDEOS_SUCCESS,
+        });
+        setYoutube(data);
+      })
+      .catch((err) => {
+        console.log('error: ', err);
+      });
+  }, [videos]);
+
   return (
     <>
       <Header />
@@ -17,6 +49,12 @@ export default () => {
             <Link to="/centres" className="btn btn-primary my-4 inline-block">
               Explore videos
             </Link>
+            <input
+              className="text-black"
+              id="search-video"
+              placeholder="Search"
+              onChange={onSearch}
+            />
           </div>
         </section>
         <section>

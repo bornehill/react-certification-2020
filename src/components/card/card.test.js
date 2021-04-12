@@ -1,4 +1,5 @@
 import React from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
 import { render } from '@testing-library/react';
 import Card from './card';
 
@@ -23,7 +24,11 @@ describe('Test Card component', () => {
   };
 
   it('Sould be create card', () => {
-    render(<Card video={video} />);
+    render(
+      <Router>
+        <Card video={video} />
+      </Router>
+    );
 
     const { frm, title2x1 } = selector;
 

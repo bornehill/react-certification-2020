@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { GrChannel } from 'react-icons/gr';
 import { IconContext } from 'react-icons';
 
@@ -13,7 +14,9 @@ const Card = ({ video, showButton = true }) => {
         allow="accelerometer; encrypted-media; gyroscope; picture-in-picture"
       />
       <div className="px-4 py-2">
-        <p className="text-2xl">{video.snippet.title}</p>
+        <Link to={{ pathname: `/video/${video.id.videoId}` }} className="text-2xl">
+          {video.snippet.title}
+        </Link>
         <p className="font-bold">
           Description: <span className="text-onyx-300">{video.snippet.description}</span>
         </p>
