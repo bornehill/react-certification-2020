@@ -6,14 +6,14 @@ import { IconContext } from 'react-icons';
 import Header from '../common/Header';
 
 const CardView = () => {
-  const { state } = useWizeTube();
+  const { state, darkMode } = useWizeTube();
   const { videos } = state;
 
   const [video, setVideo] = useState({});
   const { id } = useParams();
 
   useEffect(() => {
-    const founded = videos.items.find((v) => v.id.videoId == id);
+    const founded = videos.items.find((v) => v.id.videoId === id);
     if (founded) {
       setVideo(founded);
     }
@@ -23,10 +23,10 @@ const CardView = () => {
     <>
       <Header />
       {video.id && (
-        <main>
+        <main className={'min-h-screen pt-5 ' + (darkMode ? 'bg-onyx-700' : 'bg-white')}>
           <section className="max-w-screen-xl mx-auto">
             <div className="max-w-lg mx-auto">
-              <div className="card card-white">
+              <div className={'card ' + (darkMode ? 'card-dark' : 'card-white')}>
                 <iframe
                   className="w-full h-64 rounded-t-sm"
                   frameBorder="0"

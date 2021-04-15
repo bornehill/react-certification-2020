@@ -4,6 +4,7 @@ import Init from './Init';
 
 describe('Test Init app', () => {
   it('Sould be create Init success', () => {
+    Storage.prototype.getItem = jest.fn(() => null);
     render(<Init />);
 
     const header = screen.getByText('Tube');

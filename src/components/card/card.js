@@ -2,15 +2,18 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { GrChannel } from 'react-icons/gr';
 import { IconContext } from 'react-icons';
+import { useWizeTube } from '../../providers/wize-tube.provider';
 
 const Card = ({ video, showButton = true }) => {
+  const { darkMode } = useWizeTube();
+
   return (
-    <div className="card card-white">
+    <div className={'card ' + (darkMode ? 'card-dark' : 'card-white')}>
       <iframe
         className="w-full h-48 rounded-t-sm"
         frameBorder="0"
         title="rick roll"
-        src={`https://www.youtube.com/embed/${video.id.videoId}?controls=0&autoplay=1`}
+        src={`https://www.youtube.com/embed/${video.id.videoId}?controls=0`}
         allow="accelerometer; encrypted-media; gyroscope; picture-in-picture"
       />
       <div className="px-4 py-2">

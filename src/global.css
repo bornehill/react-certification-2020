@@ -789,7 +789,7 @@ video {
 
 .card {
   border-radius: 0.125rem;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
 .card-white {
@@ -799,6 +799,15 @@ video {
   --text-opacity: 1;
   color: #2d3748;
   color: rgba(45, 55, 72, var(--text-opacity));
+}
+
+.card-dark {
+  --bg-opacity: 1;
+  background-color: #2d3748;
+  background-color: rgba(45, 55, 72, var(--bg-opacity));
+  --text-opacity: 1;
+  color: #fff;
+  color: rgba(255, 255, 255, var(--text-opacity));
 }
 
 .loading-bar {
@@ -863,6 +872,17 @@ video {
 
 .open{
   transform: translate3d(0vw, 0, 0);
+}
+
+.toggle-checkbox:checked {
+  @apply: right-0 border-flame-400;
+  right: 0;
+  border-color: #e53d00;
+}
+
+.toggle-checkbox:checked + .toggle-label {
+  @apply: border-flame-400;
+  background-color: #e53d00;
 }
 
 /* END Custom components */
