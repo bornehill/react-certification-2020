@@ -7,7 +7,7 @@ import { useWizeTube } from '../../providers/wize-tube.provider';
 import { GET_VIDEOS_SUCCESS } from '../../actions/wize-request';
 
 export default () => {
-  const { state, dispatch } = useWizeTube();
+  const { state, dispatch, darkMode } = useWizeTube();
   const { videos } = state;
   const [youtube, setYoutube] = useState(videos);
 
@@ -33,7 +33,7 @@ export default () => {
         setYoutube(data);
       })
       .catch((err) => {
-        console.log('error: ', err);
+        console.error('service error: ', err);
       });
   }, [videos]);
 
@@ -41,7 +41,9 @@ export default () => {
     <>
       <Header />
       <main className="min-h-screen">
-        <section className="bg-onyx-700 text-white mb-5">
+        <section
+          className={darkMode ? 'bg-white text-onyx-700' : 'bg-onyx-700 text-white'}
+        >
           <div className="max-w-screen-xl mx-auto p-4">
             <h1 className="font-emphasis font-thin text-3xl">
               The site where you can spend your free time.
@@ -57,7 +59,7 @@ export default () => {
             />
           </div>
         </section>
-        <section>
+        <section className={'pt-5 ' + (darkMode ? 'bg-onyx-700' : 'bg-white')}>
           <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {youtube &&
               youtube.items

@@ -1,0 +1,9 @@
+.toggle-checkbox:checked {
+  @apply: right-0 border-flame-400;
+  right: 0;
+  border-color: #e53d00;
+}
+.toggle-checkbox:checked + .toggle-label {
+  @apply: border-flame-400;
+  background-color: #e53d00;
+}

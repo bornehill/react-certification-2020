@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useReducer } from 'react';
+import React, { createContext, useContext, useReducer, useState } from 'react';
 import wizeTubeReducer from '../reducers/wize-tube-reducer';
 
 const initState = {
@@ -19,9 +19,10 @@ function useWizeTube() {
 
 function WizeTubeProvider({ children }) {
   const [state, dispatch] = useReducer(wizeTubeReducer, initState);
+  const [darkMode, setDarkMode] = useState(false);
 
   return (
-    <WizeTubeContext.Provider value={{ state, dispatch }}>
+    <WizeTubeContext.Provider value={{ state, dispatch, darkMode, setDarkMode }}>
       {children}
     </WizeTubeContext.Provider>
   );

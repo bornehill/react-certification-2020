@@ -1,12 +1,16 @@
 import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
-import { render } from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
+import WizeTubeProvider from '../../providers/wize-tube.provider';
+import Header from '../common/Header';
 import Card from './card';
 
 describe('Test Card component', () => {
   const selector = {
     frm: 'w-full',
     title2x1: 'text-2xl',
+    tg: 'toggle-checkbox',
+    dark: 'card-dark',
   };
 
   const video = {
@@ -37,5 +41,24 @@ describe('Test Card component', () => {
 
     expect(frameVideo).toBeDefined();
     expect(titleVideo).toBeDefined();
+  });
+
+  it('Sould be dark mode', () => {
+    render(
+      <WizeTubeProvider>
+        <Router>
+          <Header />
+          <Card video={video} />
+        </Router>
+      </WizeTubeProvider>
+    );
+
+    const { tg, dark } = selector;
+
+    const toggle = document.querySelector(`.${tg}`);
+    fireEvent.click(toggle);
+
+    const darkCard = document.querySelector(`.${dark}`);
+    expect(darkCard).toBeDefined();
   });
 });
