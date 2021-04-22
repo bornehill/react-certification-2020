@@ -17,7 +17,7 @@ describe('Test auth service', () => {
     AuthService.instance.post = jest.fn((url, request, config) => {
       config.transformResponse[0].call(
         this,
-        '{"statusCode": 200, "data": { "token": "xrs-token"} }'
+        '{"statusCode": 200, "ok": true, "data": { "token": "xrs-token"} }'
       );
     });
     const lstorage = spyOn(Storage.prototype, 'setItem');

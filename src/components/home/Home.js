@@ -17,14 +17,7 @@ export default () => {
       return;
     }
 
-    const filterVideos = youtube.items.filter((v) =>
-      v.snippet.title.includes(name.target.value)
-    );
-    setYoutube({ items: [...filterVideos] });
-  };
-
-  useEffect(() => {
-    WizeTubeService.getVideos()
+    WizeTubeService.getVideos(name.target.value)
       .then(({ data }) => {
         dispatch({
           payload: data,
@@ -35,7 +28,21 @@ export default () => {
       .catch((err) => {
         console.error('service error: ', err);
       });
-  }, [videos]);
+  };
+
+  useEffect(() => {
+    WizeTubeService.getVideos('metallica')
+      .then(({ data }) => {
+        dispatch({
+          payload: data,
+          type: GET_VIDEOS_SUCCESS,
+        });
+        setYoutube(data);
+      })
+      .catch((err) => {
+        console.error('service error: ', err);
+      });
+  }, [videos, dispatch]);
 
   return (
     <>
@@ -48,7 +55,7 @@ export default () => {
             <h1 className="font-emphasis font-thin text-3xl">
               The site where you can spend your free time.
             </h1>
-            <Link to="/centres" className="btn btn-primary my-4 inline-block">
+            <Link to="/" className="btn btn-primary my-4 inline-block">
               Explore videos
             </Link>
             <input

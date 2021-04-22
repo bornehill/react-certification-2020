@@ -26,21 +26,46 @@ const Header = () => {
     <header>
       {auth.authenticated ? (
         <div>
-          <div className="flex items-center justify-between p-4">
+          <div
+            className={
+              'flex items-center justify-between p-4 ' +
+              (darkMode ? 'bg-onyx-700' : 'bg-white')
+            }
+          >
             <div className="flex items-center">
-              <IconContext.Provider value={{ className: 'm-3 text-onyx-700' }}>
+              <IconContext.Provider
+                value={{
+                  className: 'm-3 ' + (darkMode ? 'text-white' : 'text-onyx-700'),
+                }}
+              >
                 <GiHamburgerMenu onClick={handleOpenMenu} />
               </IconContext.Provider>
               <Link className="font-emphasis" to="/">
                 <span className="text-xl text-flame-600">Wize</span>
-                <span className="font-light text-2xl text-onyx-700">Tube</span>
+                <span
+                  className={
+                    'font-light text-2xl ' + (darkMode ? 'text-white' : 'text-onyx-700')
+                  }
+                >
+                  Tube
+                </span>
               </Link>
             </div>
-            <div className="flex flex-col items-center">
-              <IconContext.Provider value={{ className: 'text-onyx-700' }}>
-                <FaUserCircle />
-              </IconContext.Provider>
-              {auth.firstName}
+            <div className={'inline-flex'}>
+              <Toggle label="Dark mode" onChange={handleDarkMode} checked={darkMode} />
+              <div
+                className={
+                  'flex flex-col items-center ' +
+                  (darkMode ? 'text-white' : 'text-onyx-700')
+                }
+              >
+                <IconContext.Provider
+                  value={{ className: darkMode ? 'text-white' : 'text-onyx-700' }}
+                >
+                  <FaUserCircle />
+                </IconContext.Provider>
+                {auth.firstName}
+              </div>
             </div>
           </div>
           <SideMenu show={openMenu} />
@@ -63,7 +88,7 @@ const Header = () => {
             </span>
           </Link>
           <div className="inline-flex">
-            <Toggle label="Dark mode" onChange={handleDarkMode} />
+            <Toggle label="Dark mode" onChange={handleDarkMode} checked={darkMode} />
             <Link className="btn btn-primary" to="/login">
               Login
             </Link>

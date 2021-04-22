@@ -10,12 +10,15 @@ class AuthService extends BaseService {
     const requestConfig = {
       transformResponse: [
         (data) => {
-          const { statusCode, data: innerData } = JSON.parse(data);
-          if (statusCode === 200) {
-            localStorage.setItem('token', innerData.token);
+          const innerData = JSON.parse(data);
+          if (innerData.ok) {
+            localStorage.setItem('token', innerData.data.token);
+            this.instance.defaults.headers.common[
+              'x-auth-token'
+            ] = `Bearer ${innerData.data.token}`;
           }
 
-          return data;
+          return innerData;
         },
       ],
     };

@@ -3,10 +3,12 @@ import wizeTubeReducer from '../reducers/wize-tube-reducer';
 
 const initState = {
   videos: { items: [] },
+  fav: [],
 };
 
 const WizeTubeContext = createContext({
   videos: { items: [] },
+  fav: [],
 });
 
 function useWizeTube() {
