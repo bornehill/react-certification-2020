@@ -3,7 +3,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { act, render, screen } from '@testing-library/react';
 import WizeTubeService from '../../services/wize-tube.service';
 import WizeTubeProvider from '../../providers/wize-tube.provider';
-import Home from './Home';
+import { Home } from './Home';
 
 describe('Test Home Page', () => {
   const selector = {
@@ -13,7 +13,6 @@ describe('Test Home Page', () => {
   const response = {
     items: [
       {
-        etag: 'erqeM78PZDWIBe8qOGHGM2WdSE8',
         id: {
           videoId: 'nmXMgqjQzls',
         },
