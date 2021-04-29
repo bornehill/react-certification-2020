@@ -14,7 +14,6 @@ describe('Test Card component', () => {
   };
 
   const video = {
-    etag: 'erqeM78PZDWIBe8qOGHGM2WdSE8',
     id: {
       videoId: 'nmXMgqjQzls',
     },

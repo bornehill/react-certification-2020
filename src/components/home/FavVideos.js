@@ -33,7 +33,7 @@ export default () => {
               youtube.length > 0 &&
               youtube
                 .filter((i) => i.id.videoId)
-                .map((video) => <Card key={video.etag} video={video} />)}
+                .map((video) => <Card key={video.id.videoId} video={video} />)}
           </ul>
         </section>
       </main>

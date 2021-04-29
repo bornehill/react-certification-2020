@@ -3,7 +3,8 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import ReactRouter from 'react-router';
 import { render } from '@testing-library/react';
 import * as hook from '../../providers/wize-tube.provider';
-import CardView from './card-view';
+import { CardView } from './card-view';
+import WizeTubeProvider from '../../providers/wize-tube.provider';
 
 describe('Test Card View component', () => {
   const selector = {
@@ -14,7 +15,6 @@ describe('Test Card View component', () => {
   };
 
   const video = {
-    etag: 'erqeM78PZDWIBe8qOGHGM2WdSE8',
     id: {
       videoId: 'nmXMgqjQzls',
     },
@@ -28,16 +28,13 @@ describe('Test Card View component', () => {
   };
 
   it('Should Card View created succesfully', () => {
-    jest.spyOn(hook, 'useWizeTube').mockImplementation(() => ({
-      state: { videos: { items: [video] } },
-      darkMode: false,
-    }));
-
     jest.spyOn(ReactRouter, 'useParams').mockReturnValue({ id: 'nmXMgqjQzls' });
 
     render(
       <Router>
-        <CardView />
+        <WizeTubeProvider>
+          <CardView />
+        </WizeTubeProvider>
       </Router>
     );
   });

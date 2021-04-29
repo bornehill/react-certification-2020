@@ -1,8 +1,8 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
-import Home from './components/home/Home';
+import { Home } from './components/home/Home';
 import FavVideos from './components/home/FavVideos';
-import CardView from './components/card/card-view';
+import { CardView } from './components/card/card-view';
 import LoginView from './components/login/LoginView';
 
 export const routes = [

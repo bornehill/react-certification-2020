@@ -11,7 +11,7 @@ import { IconContext } from 'react-icons';
 import { ADD_FAV_VIDEO, REMOVE_FAV_VIDEO } from '../../actions/wize-request';
 import { parseFavVideo } from '../../common/tools/parseFavVideo';
 
-const CardView = () => {
+export const CardView = React.memo(function CardView() {
   const { authenticated } = AuthService.isAuthenticated();
   const [hover, setHover] = useState(false);
   const [like, setLike] = useState(false);
@@ -133,7 +133,7 @@ const CardView = () => {
                   relVideos.length > 0 &&
                   relVideos
                     .filter((i) => i.id.videoId)
-                    .map((video) => <Card key={video.etag} video={video} />)}
+                    .map((video) => <Card key={video.id.videoId} video={video} />)}
               </ul>
             </div>
           </section>
@@ -141,6 +141,4 @@ const CardView = () => {
       )}
     </>
   );
-};
-
-export default CardView;
+});

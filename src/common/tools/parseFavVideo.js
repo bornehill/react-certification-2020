@@ -1,6 +1,5 @@
 export function parseFavVideo(origin) {
   return {
-    etag: origin.etag,
     id: {
       videoId: origin.id.videoId,
     },
